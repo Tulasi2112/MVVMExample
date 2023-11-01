@@ -7,17 +7,37 @@ namespace MVVMEx
 {
 	public class MainViewModel : BaseViewModel
 	{
-		private string _welComeText = "hello";
-		public string WelcomeText
+		private string firsttext = "Hello";
+		public static Color firstcolor= Color.White;
+		public int fontsize = 20;
+		public string FirstText
 		{
-			get { return _welComeText; }
+			get { return firsttext; }
 			set
 			{
-				_welComeText = value;
-				OnPropertyChanged(WelcomeText);
+				firsttext = value;
+				OnPropertyChanged("FirstText");
 			}
 		}
-		public ICommand ChangeTextCommand { get; private set; }
+		public Color MyColor
+		{
+			get { return firstcolor; }
+			set
+			{
+				firstcolor = value;
+				OnPropertyChanged("MyColor");
+			}
+		}
+		public int MyFontSize
+		{
+			get { return fontsize; }
+			set
+			{
+				fontsize = value;
+				OnPropertyChanged("MyFontSize");
+			}
+		}
+		public ICommand ChangeTextCommand { get;}
 
 		public MainViewModel()
 		{
@@ -25,7 +45,9 @@ namespace MVVMEx
 		}
 		private async Task ChangeText()
 		{
-			WelcomeText= "Welcome to Xamarin Forms";
+			FirstText= "Welcome to Xamarin Forms";
+			MyColor = Color.Red;
+			MyFontSize = 50;
 		}
 	}
 }
