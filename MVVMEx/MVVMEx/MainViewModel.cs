@@ -10,6 +10,16 @@ namespace MVVMEx
 		private string firsttext = "Hello";
 		public static Color firstcolor= Color.White;
 		public int fontsize = 20;
+		public TextAlignment alignment = TextAlignment.Start;
+		public TextAlignment MyAlignment
+		{
+			get { return alignment; }
+			set
+			{
+				alignment= value;
+				OnPropertyChanged("MyAlignment");
+			}
+		}
 		public string FirstText
 		{
 			get { return firsttext; }
@@ -28,6 +38,7 @@ namespace MVVMEx
 				OnPropertyChanged("MyColor");
 			}
 		}
+		
 		public int MyFontSize
 		{
 			get { return fontsize; }
@@ -45,10 +56,46 @@ namespace MVVMEx
 		}
 		private async Task ChangeText()
 		{
-			FirstText= "Welcome to Xamarin Forms";
-			MyColor = Color.Red;
-			MyFontSize = 50;
-		}
+			//if (Device.RuntimePlatform == Device.iOS)
+			//{
+			//	FirstText = "Welcome to Xamarin Forms to iOS Simulator";
+			//	MyColor = Color.Red;
+			//	MyFontSize = 50;
+			//}
+			//else if (Device.RuntimePlatform == Device.Android)
+			//{
+			//	FirstText = "Welcome to Xamarin Forms to Android";
+
+			//}
+			//else
+			//{
+			//	FirstText = "Welcome to Xamarin Forms";
+
+			//}
+
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                FirstText = "Welcome to Xamarin Forms to mac";
+				MyColor = Color.Bisque;
+				MyFontSize = 50;
+				MyAlignment = TextAlignment.End;
+			
+
+            }
+            else if(Device.Idiom==TargetIdiom.Tablet)
+            {
+                FirstText = "Welcome to Xamarin Forms to tablet";
+				MyColor = Color.Red;
+				MyFontSize = 50;
+				MyAlignment = TextAlignment.Center;
+
+            }
+			else
+			{
+                FirstText = "Welcome to Xamarin Forms";
+
+            }
+        }
 	}
 }
 
